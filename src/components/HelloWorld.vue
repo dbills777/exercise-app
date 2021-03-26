@@ -9,8 +9,8 @@
         <input v-model="cardio" name="cardio" placeholder="Cardio Activity" />
         <input v-model="duration" name="duration" type="number" placeholder="Duration" />
         <input v-model="distance" name="distance" type="number" placeholder="Distance" />
-        <label class ="date-input" for="start">Workout Perfomed On:</label>
-        <input  v-model="date" type="date" id="start" name="date" min="2021-03-01" max="2022-12-31" />
+        <label class="date-input" for="start">Workout Perfomed On:</label>
+        <input v-model="date" type="date" id="start" name="date" min="2021-03-01" max="2022-12-31" />
         <button>Add a New Exercise</button>
         <ul v-for="exercise in exercises" :key="exercise.id">
           <li>Workout Recorded On: {{ exercise.id.toDateString() }} {{ exercise.hours }}</li>
@@ -26,7 +26,7 @@
         <label>Aerobic (no distance)</label>
         <input v-model="aerobic" name="aerobic" placeholder="Aerobic Activity" />
         <input v-model="aerobicDuration" name="aerobicDuration" type="number" placeholder="Duration" />
-        <label class ="date-input2" for="start">Workout Perfomed On:</label>
+        <label class="date-input2" for="start">Workout Perfomed On:</label>
         <input v-model="date" type="date" id="start" name="date" min="2021-03-01" max="2022-12-31" />
         <button>Add a New Exercise</button>
         <ul v-for="exercise in aerobicExercieses" :key="exercise.id">
@@ -67,11 +67,56 @@ const cardio = ref('');
 const duration = ref('');
 const date = ref('');
 const distance = ref('');
-const exercises = ref([]);
+const exercises = ref([
+  {
+    date: '2021-03-27',
+    name: 'Stair Climber',
+    distance: 1,
+    duration: 30,
+    id: new Date(),
+  },
+  {
+    date: '2021-03-23',
+    name: 'Eliptical',
+    distance: 3,
+    duration: 30,
+    id: new Date(),
+  },
+]);
 const aerobic = ref('');
 const aerobicDuration = ref('');
-const aerobicExercieses = ref([]);
-const weightExercises = ref([]);
+const aerobicExercieses = ref([
+  {
+    date: '2021-03-27',
+    name: 'Yoga',
+    aerobicDuration: 30,
+    id: new Date(),
+  },
+  {
+    date: '2021-03-24',
+    name: 'Jump Rope',
+    aerobicDuration: 50,
+    id: new Date(),
+  },
+]);
+const weightExercises = ref([
+  {
+    date: '2021-03-22',
+    name: 'Leg Press',
+    sets: 4,
+    reps: 10,
+    weight: 300,
+    id: new Date(),
+  },
+  {
+    date: '2021-03-22',
+    name: 'Butterfly Machine',
+    sets: 4,
+    reps: 8,
+    weight: 150,
+    id: new Date(),
+  },
+]);
 const sets = ref('');
 const weightName = ref('');
 const reps = ref('');
@@ -98,10 +143,8 @@ export default {
       cardio.value = '';
       duration.value = '';
       date.value = '';
-
     }
     function addAerobic() {
-      console.log(aerobicExercieses.value);
       aerobicExercieses.value.push({
         name: aerobic.value,
         aerobicDuration: aerobicDuration.value,
@@ -113,10 +156,8 @@ export default {
       aerobic.value = '';
       aerobicDuration.value = '';
       date.value = '';
-
     }
     function addWeights() {
-      console.log(weightExercises.value);
       weightExercises.value.push({
         name: weightName.value,
         weight: weight.value,
@@ -183,10 +224,10 @@ ul li {
   list-style-type: none;
   text-align: left;
 }
-.date-input{
+.date-input {
   margin-top: 2.5rem;
 }
-.date-input2{
+.date-input2 {
   margin-top: 4.5rem;
 }
 </style>
